@@ -1,4 +1,3 @@
-%%writefile utils/styling.py
 """Shared styling helpers so every page matches the KhataSetu pitch-deck look:
 deep-green banner strips, white cards, consistent footer."""
 
