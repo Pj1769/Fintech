@@ -37,7 +37,7 @@ else:
     st.success("✅ e-signature captured")
     draw_amount = st.slider(
         "How much would you like to draw now from your sanctioned limit?",
-        min_value=int(sanctioned * 0.2), max_value=sanctioned, value=int(sanctioned * 0.5), step=5000,
+        min_value=int(sanctioned * 0.2), max_value=sanctioned, value=int(sanctioned * 0.5), step=1000,
     )
     if st.button("💸 Disburse Funds", type="primary"):
         next_emi = round(draw_amount / 9 * (1 + result["interest_rate"] / 100 / 12 * 6), -2)
