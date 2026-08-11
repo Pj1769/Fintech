@@ -53,7 +53,7 @@ c3.metric("APR (all-in)", f"{result['apr']}%")
 
 c4, c5 = st.columns(2)
 c4.metric("Processing fee", f"{result['processing_fee_pct']}%")
-c5.metric("Tenure", f"{result['tenure_months']} months, revolving")
+c5.metric("Tenure", 12 months, revolving")
 
 st.markdown("#### Key Facts Statement (KFS)")
 kfs_df = pd.DataFrame({
