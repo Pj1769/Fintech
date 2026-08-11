@@ -29,7 +29,7 @@ result = score_borrower(synth)
 st.session_state["offer_result"] = result
 
 st.markdown("#### Cash-Flow Scorecard")
-comp = result["components"]
+comp = result["sub_scores"]
 df = pd.DataFrame({
     "Signal": ["GST Filing Consistency", "UPI Inflow Trend", "E-Way Bill Momentum",
                "AA Bank Cash-Flow", "Bureau (if any)"],
