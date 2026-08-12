@@ -14,32 +14,7 @@ banner("TECH & PRODUCT — Document Upload & e-KYC")
 st.markdown("### Verify Identity")
 st.progress(2 / 4, text="Step 2 of 4")
 
-
-def format_masked_aadhaar(raw: str) -> str:
-    """Take raw digits typed so far, mask first 8, keep last 4 visible,
-    format as xxxx xxxx 5458."""
-    digits = "".join(c for c in raw if c.isdigit())[:12]
-    if not digits:
-        return ""
-    masked_chars = []
-    for i, ch in enumerate(digits):
-        masked_chars.append(ch if i >= 8 else "x")
-    grouped = " ".join(
-        "".join(masked_chars[i:i + 4]) for i in range(0, len(masked_chars), 4)
-    )
-    return grouped
-
-
-aadhaar_raw = st.text_input(
-    "Aadhaar Number",
-    placeholder="xxxx xxxx 4821",
-    max_chars=14,
-)
-
-masked_preview = format_masked_aadhaar(aadhaar_raw)
-if masked_preview:
-    st.caption(f"Masked: **{masked_preview}**")
-
+aadhaar = st.text_input("Aadhaar Number", placeholder="XXXX XXXX 4821", max_chars=14)
 pan = st.text_input("PAN (auto-fetched)", value="ABCDE1234F", disabled=True)
 st.caption("✅ PAN verified")
 
@@ -49,12 +24,14 @@ selfie = st.camera_input("Tap to capture live selfie")
 st.write("")
 
 if st.button("✅ Verify & Continue", type="primary"):
-    digits = "".join(c for c in aadhaar_raw if c.isdigit())
+    digits = "".join(c for c in aadhaar if c.isdigit())
     if len(digits) < 12:
         st.error("Please enter a valid 12-digit Aadhaar number.")
     else:
+        masked_chars = [c if i >= 8 else "x" for i, c in enumerate(digits[:12])]
+        grouped = " ".join("".join(masked_chars[i:i + 4]) for i in range(0, 12, 4))
         st.session_state["ekyc"] = {
-            "aadhaar_masked": format_masked_aadhaar(aadhaar_raw),
+            "aadhaar_masked": grouped,
             "pan": pan,
             "selfie_captured": selfie is not None,
         }
