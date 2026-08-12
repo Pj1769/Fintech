@@ -25,6 +25,8 @@ otp = st.text_input("Enter OTP sent to your registered mobile", max_chars=6, pla
 
 if "esigned" not in st.session_state:
     st.session_state["esigned"] = False
+if "disbursed_done" not in st.session_state:
+    st.session_state["disbursed_done"] = False
 
 if not st.session_state["esigned"]:
     if st.button("Verify OTP & e-Sign", type="primary"):
@@ -35,31 +37,38 @@ if not st.session_state["esigned"]:
             st.error("Please enter a valid OTP.")
 else:
     st.success("✅ e-signature captured")
-    draw_amount = st.slider(
-        "How much would you like to draw now from your sanctioned limit?",
-        min_value=int(sanctioned * 0.2), max_value=int(sanctioned), value=int(sanctioned * 0.5), step=1000,
-    )
-    if st.button("💸 Disburse Funds", type="primary"):
-        next_emi = round(draw_amount / 9 * (1 + result["interest_rate"] / 100 / 12 * 6), -2)
-        next_due = (datetime.now() + timedelta(days=30)).strftime("%d %b %Y")
-        update_borrower(st.session_state["borrower_id"], {
-            "offer_accepted": 1,
-            "disbursed": 1,
-            "disbursed_amount": draw_amount,
-            "available_limit": sanctioned - draw_amount,
-            "next_emi": next_emi,
-            "next_emi_due": next_due,
-        })
-        add_repayment(st.session_state["borrower_id"], 1, next_emi, "Upcoming", next_due)
-        st.session_state["disbursed_amount"] = draw_amount
-        st.session_state["masked_account"] = "XX" + st.session_state["ekyc"]["aadhaar_masked"][-4:]
+
+    if not st.session_state["disbursed_done"]:
+        draw_amount = st.slider(
+            "How much would you like to draw now from your sanctioned limit?",
+            min_value=int(sanctioned * 0.2), max_value=int(sanctioned), value=int(sanctioned * 0.5), step=1000,
+        )
+        if st.button("💸 Disburse Funds", type="primary"):
+            next_emi = round(draw_amount / 9 * (1 + result["interest_rate"] / 100 / 12 * 6), -2)
+            next_due = (datetime.now() + timedelta(days=30)).strftime("%d %b %Y")
+            update_borrower(st.session_state["borrower_id"], {
+                "offer_accepted": 1,
+                "disbursed": 1,
+                "disbursed_amount": draw_amount,
+                "available_limit": sanctioned - draw_amount,
+                "next_emi": next_emi,
+                "next_emi_due": next_due,
+            })
+            add_repayment(st.session_state["borrower_id"], 1, next_emi, "Upcoming", next_due)
+            st.session_state["disbursed_amount"] = draw_amount
+            st.session_state["masked_account"] = "XX" + st.session_state["ekyc"]["aadhaar_masked"][-4:]
+            st.session_state["disbursed_done"] = True
+            st.rerun()
+    else:
         st.balloons()
         st.markdown(
             f'<div class="ks-card">✅ <b>Funds Credited</b><br>'
-            f'₹{draw_amount:,.0f} credited to A/c {st.session_state["masked_account"]} via escrow</div>',
+            f'₹{st.session_state["disbursed_amount"]:,.0f} credited to A/c '
+            f'{st.session_state["masked_account"]} via escrow</div>',
             unsafe_allow_html=True,
         )
         if st.button("View Repayment Schedule →", type="primary"):
             st.switch_page("pages/6_My_Vyapar_Line.py")
 
+footer()
 footer()
