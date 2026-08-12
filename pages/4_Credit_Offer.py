@@ -103,14 +103,5 @@ if st.button("✅ Accept Offer", type="primary"):
     st.success("Offer accepted!")
     st.switch_page("pages/5_eSign_Disbursement.py")
 
-with st.expander("Why this screen matters"):
-    st.write(
-        "- The Key Facts Statement is shown in full, in plain language, exactly as mandated by "
-        "RBI's Digital Lending Directions — APR, fees and tenure upfront, no fine print.\n"
-        "- One blended rate is shown even though two lenders (bank + KhataSetu) sit behind the "
-        "loan, as required under the Co-Lending Directions, 2025.\n"
-        "- A visible cooling-off window lets the borrower exit penalty-free within the "
-        "RE's board-approved period."
-    )
 
 footer()
