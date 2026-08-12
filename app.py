@@ -17,27 +17,8 @@ st.write(
     "A GST + UPI + Account Aggregator underwriting engine for New-to-Credit trader "
     "and micro-manufacturing MSMEs in rural and semi-urban India."
 )
-
 st.markdown("---")
-banner("EXECUTIVE SUMMARY — Bridging India's Last-Mile Credit Gap With Data, Not Collateral")
 
-c1, c2, c3, c4 = st.columns(4)
-with c1:
-    st.markdown('<div class="ks-card"><b>🧩 Problem</b><br>83% of India\'s 8.7 crore MSMEs '
-                'have never accessed formal credit — deepest among rural/semi-urban traders '
-                'with no bureau file.</div>', unsafe_allow_html=True)
-with c2:
-    st.markdown('<div class="ks-card"><b>💡 Solution</b><br>A revolving GST- and UPI-linked '
-                'working capital line, underwritten on cash-flow data — no balance sheet required.</div>',
-                unsafe_allow_html=True)
-with c3:
-    st.markdown('<div class="ks-card"><b>🏦 Model</b><br>Capital-light NBFC-LSP on a co-lending '
-                'chassis — 10% own-book skin, 90% bank capital.</div>', unsafe_allow_html=True)
-with c4:
-    st.markdown('<div class="ks-card"><b>🎯 Ask</b><br>Rs 18 crore seed to reach Rs 40 crore AUM '
-                'and 2,500 borrowers in Year 1.</div>', unsafe_allow_html=True)
-
-st.markdown("---")
 note("This is a working prototype of the KhataSetu product experience described in the "
      "investor pitch deck. Choose a persona below to explore the app.")
 
@@ -48,7 +29,6 @@ with col1:
              "e-KYC → credit offer → e-sign & disbursement → repayment dashboard.")
     if st.button("Start Borrower Journey →", type="primary", use_container_width=True):
         st.switch_page("pages/1_Language_Onboarding.py")
-
 with col2:
     st.markdown("### 🏦 I'm the Lender / Ops Team")
     st.write("View the portfolio: collections & NPA early-warning dashboard, and "
@@ -63,5 +43,4 @@ with col2:
 
 st.markdown("---")
 chip("GST"); chip("UPI"); chip("Account Aggregator"); chip("e-Way Bill"); chip("Co-Lending"); chip("RBI Compliant")
-
 footer()
