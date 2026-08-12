@@ -18,16 +18,6 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-st.write("")
-with st.expander("Why this screen matters"):
-    st.write(
-        "- Vernacular-first design (Hindi + 3 regional languages) removes the biggest drop-off "
-        "point for Tier 3-6 users.\n"
-        "- WhatsApp Business API entry point meets borrowers where they already are, avoiding "
-        "a separate app-install step at first contact.\n"
-        "- A single, uncluttered choice up front — no forms, no jargon — builds trust before "
-        "any data is asked for."
-    )
 
 st.markdown("---")
 st.markdown("##### Tell us about your business")
