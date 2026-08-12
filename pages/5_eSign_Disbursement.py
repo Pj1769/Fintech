@@ -62,14 +62,4 @@ else:
         if st.button("View Repayment Schedule →", type="primary"):
             st.switch_page("pages/6_My_Vyapar_Line.py")
 
-with st.expander("Why this screen matters"):
-    st.write(
-        "- Aadhaar e-Sign closes the loop without a single physical signature or branch visit — "
-        "core to the sub-48-hour promise.\n"
-        "- Disbursal moves through an escrow account straight to the borrower's own bank account, "
-        "never to a third party, per RBI's digital lending disbursal rule.\n"
-        "- A clear confirmation moment builds trust for a first-time formal borrower and sets up "
-        "the repayment relationship that follows."
-    )
-
 footer()
