@@ -34,14 +34,5 @@ if st.button("🔒 Grant Secure Consent", type="primary", disabled=not all_grant
 if not all_granted:
     st.info("All four consents are needed to build your cash-flow score.")
 
-with st.expander("Why this screen matters"):
-    st.write(
-        "- Purpose-limited, granular consent per RBI's Account Aggregator and Digital Lending "
-        "Directions — the borrower sees exactly what is pulled and why.\n"
-        "- GSTN's status as a live AA Financial Information Provider lets us pull GST data "
-        "through the same consent flow as bank data — one screen, one OTP.\n"
-        "- This is the single most important screen in the funnel: it converts a manual "
-        "PDF-upload nightmare into a sub-5-minute, revocable, bank-grade consent."
-    )
 
 footer()
