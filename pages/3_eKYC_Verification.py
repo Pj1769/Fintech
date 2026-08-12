@@ -35,14 +35,4 @@ if st.button("✅ Verify & Continue", type="primary"):
         st.success("Identity verified.")
         st.switch_page("pages/4_Credit_Offer.py")
 
-with st.expander("Why this screen matters"):
-    st.write(
-        "- Aadhaar e-KYC + PAN auto-fetch removes physical document uploads entirely — critical "
-        "where scanning/uploading PDFs is the single biggest funnel drop-off.\n"
-        "- Live selfie liveness-check satisfies RBI KYC norms while remaining a one-tap action "
-        "on a basic Android smartphone.\n"
-        "- A visible 4-step progress bar sets expectations for a borrower unfamiliar with "
-        "digital loan applications."
-    )
-
 footer()
