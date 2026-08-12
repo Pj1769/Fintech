@@ -14,7 +14,7 @@ banner("TECH & PRODUCT — Document Upload & e-KYC")
 st.markdown("### Verify Identity")
 st.progress(2 / 4, text="Step 2 of 4")
 
-aadhaar = st.text_input("Aadhaar Number", placeholder="XXXX XXXX 4821", max_chars=14)
+aadhaar = st.text_input("Aadhaar Number", placeholder="XXXX XXXX 4821", max_chars=12)
 pan = st.text_input("PAN (auto-fetched)", value="ABCDE1234F", disabled=True)
 st.caption("✅ PAN verified")
 
